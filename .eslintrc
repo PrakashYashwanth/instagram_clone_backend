@@ -1,0 +1,42 @@
+{
+  "env": {
+    "node": true, // Server-specific environment
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    // Add other plugins or configurations as needed
+    "plugin:prettier/recommended" // Enable eslint-plugin-prettier
+  ],
+  "overrides": [
+    // For JS files where document, windows etc. is used
+    {
+      "files": ["*.{js}"],
+      "env": {
+        "node": true,
+        "es2021": true
+      }
+    },
+    // Jest specific configuration for test files
+    {
+      "files": ["**/*.test.js", "**/__tests__/*"],
+      "env": {
+        "jest": true // Set Jest environment
+      },
+      "extends": ["plugin:jest/recommended"] // Use recommended Jest rules
+    }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    // Your shared ESLint rules go here
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-console": 2, // Use some other logger
+    // Match the prettier configs
+    "semi": ["error", "never"],
+    "indent": ["error", 2],
+    "comma-dangle": ["error", "never"]
+  }
+}
